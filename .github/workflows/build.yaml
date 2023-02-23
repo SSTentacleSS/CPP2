@@ -1,0 +1,27 @@
+name: CMake Build MIIT lib
+
+on: [push]
+
+jobs:
+  build:
+    strategy:
+      max-parallel: 3
+      matrix:
+        version: [10, 12, 14]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Get cmake
+        uses: lukka/get-cmake@latest
+      - name: Build MIIT lib
+        run: cmake --build .
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: libmath-${{ runner.os }}
+          path:
+            lib/*
+      - name: Run Demo
+        run: demo/demo
+      - name: Run tests
+        run: tests/tests
