@@ -7,13 +7,51 @@ jobs:
     strategy:
       max-parallel: 3
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os:
+          - ubuntu-latest
+          - windows-latest
+        compiler:
+          - gcc
+        include:
+          - os: "windows-latest"
+            compiler: "msvc"
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Get cmake
-        uses: lukka/get-cmake@latest
+      - name: Cache dependency manager
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/vcpkg
+            ./build/vcpkg_installed
+            ${{ env.HOME }}/.cache/vcpkg/archives
+            ${{ env.XDG_CACHE_HOME }}/vcpkg/archives
+            ${{ env.LOCALAPPDATA }}\vcpkg\archives
+            ${{ env.APPDATA }}\vcpkg\archives
+          key: ${{ runner.os }}-${{ matrix.compiler }}-${{ env.BUILD_TYPE }}-${{ hashFiles('**/CMakeLists.txt') }}-${{ hashFiles('./vcpkg.json')}}
+          restore-keys: |
+            ${{ runner.os }}-${{ env.BUILD_TYPE }}-
+      - name: Setup Cpp
+        uses: aminya/setup-cpp@v1
+        with:
+          compiler: ${{ matrix.compiler }}
+          vcvarsall: ${{ contains(matrix.os, 'windows') }}
+          cmake: true
+          vcpkg: true
+          ninja: false
+          cppcheck: false
+      - name: Install prebuild requirements
+        run: |
+          if [ "$RUNNER_OS" == "Linux" ]; then
+            apt install catch2
+          elif [ "$RUNNER_OS" == "Windows" ]; then
+            vcpkg install catch2
+          else
+            echo "$RUNNER_OS not supported"
+            exit 1
+          fi
+        shell: bash
       - name: Create CMake cache if missing
         run: cmake .
       - name: Build MIIT lib
