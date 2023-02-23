@@ -11,15 +11,21 @@ jobs:
           - ubuntu-latest
           - windows-latest
           - macos-latest
+        compiler:
+          - gcc
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Get CMake
-        uses: lukka/get-cmake@latest
+      - name: Setup Cpp
+        uses: aminya/setup-cpp@v1
         with:
-          useLocalCache: true
-          useCloudCache: true
+          compiler: ${{ matrix.compiler }}
+          vcvarsall: ${{ contains(matrix.os, 'windows') }}
+          cmake: true
+          vcpkg: true
+          ninja: false
+          cppcheck: false
       - name: Restore artifacts, or setup vcpkg (do not install any package)
         uses: lukka/run-vcpkg@v10
       - name: Create CMake cache if missing
