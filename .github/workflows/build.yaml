@@ -35,8 +35,8 @@ jobs:
         with:
           name: libmath-${{ runner.os }}
           path: lib
-      - run: dir .
-      - run: dir lib/
+      - run: ls .
+      - run: ls lib/
       - name: Run Demo
         run: ./demo/${{ runner.os == 'Windows' && 'Debug/demo.exe' || 'demo' }}
       - name: Archive demo
