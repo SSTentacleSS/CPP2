@@ -26,6 +26,8 @@ jobs:
           vcpkg: true
           ninja: false
           cppcheck: false
+      - name: Download libs
+        run: vcpkg install check2
       - name: Create CMake cache if missing
         run: cmake .
       - name: Build MIIT lib
