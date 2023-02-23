@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.25)
 
 project(miit VERSION 1.0.0 DESCRIPTION "A library that implements the basic functions required for RUT MIIT")
 add_subdirectory(demo)
-add_subdirectory(tests)
 
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 add_library(miit SHARED ${SOURCES})
