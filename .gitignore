@@ -1,11 +1,12 @@
 .trunk/
 .vscode/
+.metals/
 CMakeFiles/
 bin/
 build/
 lib/
 Makefile
-cmake_install.cmake
+*.cmake
 CMakeCache.txt
 *.so
 *.so.*
@@ -15,3 +16,4 @@ conan*
 graph_info.json
 demo/demo
 tests/tests
+Testing/
