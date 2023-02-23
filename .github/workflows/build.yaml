@@ -33,8 +33,8 @@ jobs:
       - name: Archive shared libs
         uses: actions/upload-artifact@v3
         with:
-          name: libmath-${{ runner.os }}
-          path: ./*.so
+          name: libmiit
+          path: ./**.(so|dylib|dll)
       - name: Run Demo
         run: ./demo/${{ runner.os == 'Windows' && 'Debug/demo.exe' || 'demo' }}
       - name: Archive demo
