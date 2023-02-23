@@ -43,5 +43,5 @@ jobs:
       - name: Run Demo
         run: |
           npm install -g copy
-          copy ./**/${{ runner.os != 'Windows' && 'lib' }}miit.${{ runner.os == 'Windows' && 'dll' || (runner.os == 'Linux' && 'so' || 'dylib') }} ./demo/${{ runner.os == 'Windows' && 'Release' }}
+          copy ./**/${{ runner.os != 'Windows' && 'lib' }}miit.${{ runner.os == 'Windows' && 'dll' || (runner.os == 'Linux' && 'so' || 'dylib') }} ./demo/${{ runner.os == 'Windows' && 'Release' || '' }}
           ./demo/${{ runner.os == 'Windows' && 'Release/demo.exe' || 'demo' }}
