@@ -6,10 +6,12 @@ add_executable(tests ${SOURCES})
 target_link_libraries(tests PRIVATE GTest::GTest miit)
 target_include_directories(tests PUBLIC ${CMAKE_CURRENT_LIST_DIR}/../include)
 
-add_custom_command(TARGET tests POST_BUILD
-  COMMAND ${CMAKE_COMMAND} copy $<TARGET_FILE_DIR:demo> $<TARGET_RUNTIME_DLLS:demo>
-  COMMAND_EXPAND_LISTS
-)
+if(DEFINED $<TARGET_FILE_DIR:demo>)
+  add_custom_command(TARGET demo POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -Et copy $<TARGET_FILE_DIR:demo> $<TARGET_RUNTIME_DLLS:demo>
+    COMMAND_EXPAND_LISTS
+  )
+endif()
 
 include(GoogleTest)
 gtest_discover_tests(tests)

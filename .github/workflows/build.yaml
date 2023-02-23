@@ -19,8 +19,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           submodules: true
-      - name: Setup Copy
-        run: npm install -g copy
       - name: Setup Cpp
         uses: aminya/setup-cpp@v1
         with:
