@@ -18,6 +18,7 @@ target_include_directories(miit PRIVATE src)
 include(GNUInstallDirs)
 include(GenerateExportHeader)
 
+generate_export_header(miit)
 install(FILES ${CMAKE_BINARY_DIR}/miit.pc DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/pkgconfig)
 install(
   TARGETS miit
