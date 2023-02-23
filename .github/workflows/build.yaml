@@ -41,4 +41,7 @@ jobs:
           name: demo
           path: ./demo/${{ runner.os == 'Windows' && 'Release/demo.exe' || 'demo' }}
       - name: Run Demo
-        run: ./demo/${{ runner.os == 'Windows' && 'Release/demo.exe' || 'demo' }}
+        run: |
+          npm install -g copy
+          copy ./**/${{ runner.os != 'Windows' && 'lib' }}miit.${{ runner.os == 'Windows' && 'dll' || (runner.os == 'Linux' && 'so' || 'dylib') }} ./demo/${{ runner.os == 'Windows' && 'Release' }}
+          ./demo/${{ runner.os == 'Windows' && 'Release/demo.exe' || 'demo' }}
