@@ -44,7 +44,7 @@ jobs:
       - name: Install prebuild requirements
         run: |
           if [ "$RUNNER_OS" == "Linux" ]; then
-            apt install catch2
+            sudo apt install catch2 -y
           elif [ "$RUNNER_OS" == "Windows" ]; then
             vcpkg install catch2
           else
