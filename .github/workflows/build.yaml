@@ -34,7 +34,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: libmiit
-          path: ./**/${{ runner.os != 'Windows' && 'lib' }}miit.${{ runner.os == 'Windows' && 'dll' || (runner.os == 'Linux' && 'so' || 'dylib') }}
+          path: ./**/${{ runner.os != 'Windows' && 'lib' || '' }}miit.${{ runner.os == 'Windows' && 'dll' || (runner.os == 'Linux' && 'so' || 'dylib') }}
       - name: Archive demo
         uses: actions/upload-artifact@v3
         with:
@@ -43,5 +43,5 @@ jobs:
       - name: Run Demo
         run: |
           npm install -g copy
-          copy ./**/${{ runner.os != 'Windows' && 'lib' }}miit.${{ runner.os == 'Windows' && 'dll' || (runner.os == 'Linux' && 'so' || 'dylib') }} ./demo/${{ runner.os == 'Windows' && 'Release' || '' }}
+          copy ./**/${{ runner.os != 'Windows' && 'lib' || '' }}miit.${{ runner.os == 'Windows' && 'dll' || (runner.os == 'Linux' && 'so' || 'dylib') }} ./demo/${{ runner.os == 'Windows' && 'Release' || '' }}
           ./demo/${{ runner.os == 'Windows' && 'Release/demo.exe' || 'demo' }}
