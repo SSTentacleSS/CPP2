@@ -10,6 +10,7 @@ CMakeCache.txt
 *.so
 *.so.*
 *.pc
+*_export.h
 conan*
 graph_info.json
 demo/demo
