@@ -35,10 +35,8 @@ jobs:
         with:
           name: libmiit
           path: ./**/libmiit.${{ runner.os == 'Windows' && 'dll' || (runner.os == 'Linux' && 'so' || 'dylib') }}
-      - run: dir
-      - run: dir demo/Debug
       - name: Run Demo
-        run: ./demo/${{ runner.os == 'Windows' && 'Demo/demo.exe' || 'demo' }}
+        run: demo/${{ runner.os == 'Windows' && 'Demo/demo.exe' || 'demo' }}
       - name: Archive demo
         uses: actions/upload-artifact@v3
         with:
