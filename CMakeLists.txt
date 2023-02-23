@@ -6,7 +6,7 @@ add_subdirectory(demo)
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 add_library(miit SHARED ${SOURCES})
 
-set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS YES CACHE BOOL "Export all symbols")
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib CACHE PATH "Directory for libraries")
 set_target_properties(miit PROPERTIES VERSION ${PROJECT_VERSION})
 set_target_properties(miit PROPERTIES SOVERSION 0)
