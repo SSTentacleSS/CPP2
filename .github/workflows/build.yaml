@@ -39,6 +39,6 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: demo
-          path: ./demo/${{ runner.os == 'Windows' && 'Debug/demo.exe' || 'demo' }}
+          path: ./demo/${{ runner.os == 'Windows' && 'Release/demo.exe' || 'demo' }}
       - name: Run Demo
-        run: ./demo/${{ runner.os == 'Windows' && 'Debug/demo.exe' || 'demo' }}
+        run: ./demo/${{ runner.os == 'Windows' && 'Release/demo.exe' || 'demo' }}
