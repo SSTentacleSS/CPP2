@@ -11,6 +11,8 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
       - name: Get cmake
         uses: lukka/get-cmake@latest
       - name: Build MIIT lib
