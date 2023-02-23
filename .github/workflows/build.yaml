@@ -30,12 +30,17 @@ jobs:
         run: cmake -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=TRUE -DBUILD_SHARED_LIBS=TRUE .
       - name: Build MIIT lib
         run: cmake --build .
-      - name: Archive production artifacts
+      - name: Archive shared libs
         uses: actions/upload-artifact@v3
         with:
           name: libmath-${{ runner.os }}
           path: lib
-      - run: dir demo/demo.dir/Debug
-      - run: dir demo/Debug
+      - run: dir .
+      - run: dir lib/
       - name: Run Demo
-        run: ./demo/demo${{ runner.os == 'Windows' && '.exe' || '' }}
+        run: ./demo/${{ runner.os == 'Windows' && 'Debug/demo.exe' || 'demo' }}
+      - name: Archive demo
+        uses: actions/upload-artifact@v3
+        with:
+          name: demo
+          path: ./demo/${{ runner.os == 'Windows' && 'Debug/demo.exe' || 'demo' }}
