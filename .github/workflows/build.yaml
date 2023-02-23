@@ -28,7 +28,7 @@ jobs:
           cppcheck: false
       - name: Create CMake cache if missing
         run: cmake .
-      - run: ls -la
+      - run: dir
       - name: Build MIIT lib
         run: cmake --build .
       - name: Archive production artifacts
