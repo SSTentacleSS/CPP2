@@ -36,4 +36,4 @@ jobs:
           name: libmath-${{ runner.os }}
           path: lib
       - name: Run Demo
-        run: demo/demo${{ runner.os == "Windows" && ".exe" || "" }}
+        run: demo/demo${{ runner.os == 'Windows' && '.exe' || '' }}
