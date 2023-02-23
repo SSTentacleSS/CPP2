@@ -34,7 +34,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: libmiit
-          path: ./**/libmiit.${{ runner.os == 'Windows' && 'dll' || (runner.os == 'Linux' && 'so' || 'dylib') }}
+          path: ./**/(lib)?miit.${{ runner.os == 'Windows' && 'dll' || (runner.os == 'Linux' && 'so' || 'dylib') }}
       - name: Archive demo
         uses: actions/upload-artifact@v3
         with:
