@@ -6,8 +6,9 @@ bin/
 build/
 lib/
 Makefile
-*.cmake
 CMakeCache.txt
+*.cmake
+*.log
 *.so
 *.so.*
 *.pc
@@ -17,3 +18,4 @@ graph_info.json
 demo/demo
 tests/tests
 Testing/
+vcpkg_installed/
