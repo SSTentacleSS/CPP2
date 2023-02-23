@@ -23,7 +23,7 @@ jobs:
           compiler: ${{ matrix.compiler }}
           vcvarsall: ${{ contains(matrix.os, 'windows') }}
           cmake: true
-          vcpkg: true
+          vcpkg: false
           ninja: false
           cppcheck: false
       - name: Create CMake cache if missing
@@ -34,7 +34,6 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: libmath-${{ runner.os }}
-          path:
-            lib/*
+          path: lib
       - name: Run Demo
-        run: demo/demo
+        run: demo/demo${{ runner.os == "Windows" && ".exe" || "" }}
