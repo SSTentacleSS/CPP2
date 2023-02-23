@@ -26,8 +26,6 @@ jobs:
           vcpkg: true
           ninja: false
           cppcheck: false
-      - name: Restore artifacts, or setup vcpkg (do not install any package)
-        uses: lukka/run-vcpkg@v10
       - name: Create CMake cache if missing
         run: cmake .
       - name: Build MIIT lib
