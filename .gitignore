@@ -9,5 +9,7 @@ CMakeCache.txt
 *.so
 *.so.*
 *.pc
+conan*
+graph_info.json
 demo/demo
 tests/tests
