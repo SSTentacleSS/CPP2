@@ -38,17 +38,17 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: libmiit
-          path: ./**/miit.${{ runner.os == 'Linux' && 'so' || 'dylib' }}
+          path: miit.${{ runner.os == 'Linux' && 'so' || 'dylib' }}
       - name: Archive Windows shared libs
         if: ${{ runner.os == 'Windows' }}
         uses: actions/upload-artifact@v3
         with:
           name: libmiit
-          path: ./Release/libmiit.dll
+          path: Release/libmiit.dll
       - name: Run Demo
-        run: ./demo/${{ runner.os == 'Windows' && 'Release/demo.exe' || 'demo' }}
+        run: demo/${{ runner.os == 'Windows' && 'Release/demo.exe' || 'demo' }}
       - name: Archive demo
         uses: actions/upload-artifact@v3
         with:
           name: demo
-          path: ./demo/${{ runner.os == 'Windows' && 'Release/demo.exe' || 'demo' }}
+          path: demo/${{ runner.os == 'Windows' && 'Release/demo.exe' || 'demo' }}
