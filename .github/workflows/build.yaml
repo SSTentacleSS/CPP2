@@ -28,9 +28,9 @@ jobs:
           vcpkg: true
           ninja: false
       - name: Create CMake cache if missing
-        run: cmake --debug -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=TRUE -DBUILD_SHARED_LIBS=TRUE .
+        run: cmake -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=TRUE -DBUILD_SHARED_LIBS=TRUE . --verbose
       - name: Build MIIT lib
-        run: cmake --debug --build . --config Release
+        run: cmake --build . --config Release --verbose
       - name: Run tests
         run: ctest
       - name: Archive shared libs
