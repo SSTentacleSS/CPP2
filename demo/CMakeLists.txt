@@ -5,9 +5,9 @@ add_executable(demo demo.cxx)
 target_link_libraries(demo miit)
 target_include_directories(demo PRIVATE ${CMAKE_CURRENT_LIST_DIR}/../include)
 
-if(DEFINED $<TARGET_FILE_DIR:demo>)
+if(WIN32)
   add_custom_command(TARGET demo POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy -t $<TARGET_FILE_DIR:demo> $<TARGET_RUNTIME_DLLS:demo>
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:miit> $<TARGET_FILE_DIR:demo>
     COMMAND_EXPAND_LISTS
   )
 endif()
