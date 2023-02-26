@@ -6,9 +6,9 @@ add_executable(tests ${SOURCES})
 target_link_libraries(tests PRIVATE GTest::GTest miit)
 target_include_directories(tests PUBLIC ${CMAKE_CURRENT_LIST_DIR}/../include)
 
-if(DEFINED $<TARGET_FILE_DIR:demo>)
-  add_custom_command(TARGET demo POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -Et copy $<TARGET_FILE_DIR:demo> $<TARGET_RUNTIME_DLLS:demo>
+if(DEFINED $<TARGET_FILE_DIR:tests>)
+  add_custom_command(TARGET tests POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy -t $<TARGET_FILE_DIR:tests> $<TARGET_RUNTIME_DLLS:tests>
     COMMAND_EXPAND_LISTS
   )
 endif()
