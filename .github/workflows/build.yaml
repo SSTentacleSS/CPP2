@@ -50,5 +50,5 @@ jobs:
       - name: Archive demo
         uses: actions/upload-artifact@v3
         with:
-          name: demo
+          name: demo-${{ runner.os }}
           path: demo/${{ runner.os == 'Windows' && 'Release/demo.exe' || 'demo' }}
