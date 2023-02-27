@@ -9,11 +9,13 @@ enable_testing()
 add_subdirectory(demo)
 add_subdirectory(tests)
 
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "$<0:>${CMAKE_BINARY_DIR}/bin")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "$<0:>${CMAKE_BINARY_DIR}/lib")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "$<0:>${CMAKE_BINARY_DIR}/lib")
+
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 add_library(miit SHARED ${SOURCES})
 
-set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS YES CACHE BOOL "Export all symbols")
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib CACHE PATH "Directory for libraries")
 set_target_properties(miit PROPERTIES VERSION ${PROJECT_VERSION})
 set_target_properties(miit PROPERTIES SOVERSION 0)
 set_target_properties(miit PROPERTIES PUBLIC_HEADER include/lib.h)

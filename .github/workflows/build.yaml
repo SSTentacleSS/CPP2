@@ -30,7 +30,7 @@ jobs:
       - name: Create CMake cache if missing
         run: cmake -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=TRUE -DBUILD_SHARED_LIBS=TRUE .
       - name: Build MIIT lib
-        run: cmake --build . --config Release --verbose
+        run: cmake --build . --config Release
       - name: Run tests
         run: ctest
       - name: Archive Unix-based shared libs
@@ -38,13 +38,13 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: libmiit
-          path: libmiit.${{ runner.os == 'Linux' && 'so' || 'dylib' }}
+          path: lib/libmiit.${{ runner.os == 'Linux' && 'so' || 'dylib' }}
       - name: Archive Windows shared libs
         if: ${{ runner.os == 'Windows' }}
         uses: actions/upload-artifact@v3
         with:
           name: libmiit
-          path: Release/miit.dll
+          path: lib/Release/miit.dll
       - name: Run Demo
         run: demo/${{ runner.os == 'Windows' && 'Release/demo.exe' || 'demo' }}
       - name: Archive demo
