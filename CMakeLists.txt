@@ -17,7 +17,7 @@ file(GLOB_RECURSE SOURCES "src/*.cpp")
 add_library(miit SHARED ${SOURCES})
 
 set_target_properties(miit PROPERTIES VERSION ${PROJECT_VERSION})
-set_target_properties(miit PROPERTIES SOVERSION 0)
+set_target_properties(miit PROPERTIES SOVERSION 2)
 set_target_properties(miit PROPERTIES PUBLIC_HEADER include/lib.h)
 
 target_include_directories(miit PRIVATE include)

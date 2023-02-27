@@ -33,18 +33,11 @@ jobs:
         run: cmake --build . --config Release
       - name: Run tests
         run: ctest
-      - name: Archive Unix-based shared libs
-        if: ${{ runner.os != 'Windows' }}
+      - name: Archive shared libs
         uses: actions/upload-artifact@v3
         with:
           name: libmiit
-          path: lib/libmiit.${{ runner.os == 'Linux' && 'so' || 'dylib' }}
-      - name: Archive Windows shared libs
-        if: ${{ runner.os == 'Windows' }}
-        uses: actions/upload-artifact@v3
-        with:
-          name: libmiit
-          path: lib/Release/miit.dll
+          path: lib/*
       - name: Run Demo
         run: demo/${{ runner.os == 'Windows' && 'Release/demo.exe' || 'demo' }}
       - name: Archive demo
