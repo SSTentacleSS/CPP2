@@ -53,7 +53,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: libmiit
-          path: lib/${{ runner.os == 'Windows' && 'miit.dll' || 'libmiit*.2' }}
+          path: lib/${{ runner.os == 'Windows' && 'miit.dll' || 'libmiit*2*' }}
       - name: Run Demo
         run: demo/${{ runner.os == 'Windows' && 'Release/demo.exe' || 'demo' }}
       - name: Archive demo
