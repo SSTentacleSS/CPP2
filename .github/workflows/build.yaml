@@ -52,7 +52,7 @@ jobs:
       - name: Archive shared libs
         uses: actions/upload-artifact@v3
         with:
-          path: lib/?(lib)miit.{so,dylib,dll}
+          path: lib/(lib)?miit.*
       - name: Run Demo
         run: demo/${{ runner.os == 'Windows' && 'Release/demo.exe' || 'demo' }}
       - name: Archive demo
