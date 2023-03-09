@@ -1,13 +1,15 @@
+#include <vector>
 #include <vec.hpp>
-#include <type_traits>
+
+using std::vector;
 
 namespace miit::world
 {
-  template <long... T>
-  class Vec2 : public Vec<T, T>
+  class Vec2 : protected Vec
   {
     public:
-      Vec2(long x, long y);
-  };
+      explicit Vec2(long x, long y);
+      ~Vec2();
+  }; // TODO: Implement basic methods for Vec2
   
 } // namespace miit::graphic
