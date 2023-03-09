@@ -11,5 +11,5 @@ int plus(int first, int second)
 
 int minus(int first, int second)
 {
-  
+  return first - second;
 }
